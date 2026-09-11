@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>എഴുത്തു കുന്ത്രാണ്ടം | Useless Innovations</title>
+    <!-- Google Fonts for High-End Pop & Modern Tech Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. MODERN POP-NEOBRUTALISM COLOR PALETTE & DESIGN SYSTEM
+           ========================================================================== */
+        :root {
+            --bg-gradient: radial-gradient(circle at 20% 20%, #fef3c7 0%, #fbcfe8 40%, #e0e7ff 75%, #bae6fd 100%);
+            --card-yellow: #fef9c3;
+            --card-pink: #fce7f3;
+            --card-cyan: #cffafe;
+            --card-purple: #f3e8ff;
+            --card-white: #ffffff;
+            --border-black: #0f172a;
+            --shadow-pop: 5px 5px 0px #0f172a;
+            --shadow-hover: 8px 8px 0px #0f172a;
+            --primary-pop: #ff2a85;
+            --secondary-pop: #7c3aed;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: #fef08a;
+            background-attachment: fixed;
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: radial-gradient(rgba(15, 23, 42, 0.07) 2px, transparent 2px);
+            background-size: 28px 28px;
+        }
+
+        /* ==========================================================================
+           PRELOADER OVERLAY
+           ========================================================================== */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #fef08a;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .loader-card {
+            background: #ffffff;
+            border: 4.5px solid var(--border-black);
+            box-shadow: 12px 12px 0px var(--border-black);
+            padding: 3.5rem 3rem;
+            border-radius: 32px;
+            text-align: center;
+            max-width: 540px;
+            width: 90%;
+            transform: rotate(-1.5deg);
+        }
+
+        .gif-container {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto 1.8rem;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 4px dashed var(--border-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff59d;
+        }
+
+        .loader-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .loader-card p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .spinner-bar {
+            width: 100%;
+            height: 16px;
+            background: #f1f5f9;
+            border: 3.5px solid var(--border-black);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 1.8rem;
+        }
+
+        .spinner-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--primary-pop);
+            animation: loadProgress 1.4s ease-in-out forwards;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* ==========================================================================
+           HEADER & GLASSMORPHIC NAVIGATION
+           ========================================================================== */
+        header {
+            padding: 1rem 6%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid var(--border-black);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--border-black);
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 8px 20px;
+            border: 2.5px solid var(--border-black);
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 3px 3px 0px var(--border-black);
+            transition: background 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f472b6;
+            color: #fff;
+        }
+
+        /* ==========================================================================
+           PAGES & ANIMATIONS
+           ========================================================================== */
+        .page {
+            display: none;
+            padding: 2.5rem 3%;
+            max-width: 1700px;
+            margin: 0 auto;
+            width: 100%;
+            animation: pageSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageSlide {
+            from { opacity: 0; transform: translateY(15px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ==========================================================================
+           LANDING PAGE & EVASIVE BUTTON + 67 MEME ANIMATION
+           ========================================================================== */
+        .hero {
+            text-align: center;
+            margin-top: 1rem;
+            position: relative;
+            min-height: 420px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 22px;
+            background: #a7f3d0;
+            border: 3px solid var(--border-black);
+            box-shadow: 3px 3px 0px var(--border-black);
+            border-radius: 30px;
+            color: var(--border-black);
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transform: rotate(-1deg);
+        }
+
+        .hero-title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-title-wrapper h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0;
+            color: var(--border-black);
+            letter-spacing: -1px;
+        }
+
+        .meme-wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+        }
+
+        .meme-wrapper.meme-left {
+            animation: moveHand6 1s ease-in-out infinite alternate;
+        }
+
+        .meme-wrapper.meme-right {
+            animation: moveHand7 1s ease-in-out infinite alternate-reverse;
+        }
+
+        .meme-box {
+            border: 3.5px solid var(--border-black);
+            box-shadow: 5px 5px 0px var(--border-black);
+            border-radius: 20px;
+            padding: 6px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .meme-wrapper.meme-left .meme-box {
+            background: #fef08a;
+            color: var(--primary-pop);
+        }
+
+        .meme-wrapper.meme-right .meme-box {
+            background: #a7f3d0;
+            color: var(--secondary-pop);
+        }
+
+        .meme-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .meme-hand {
+            font-size: 2.5rem;
+            line-height: 1;
+            margin-top: -2px;
+        }
+
+        @keyframes moveHand6 {
+            0% { transform: translateY(-16px) rotate(-6deg); }
+            100% { transform: translateY(16px) rotate(4deg); }
+        }
+
+        @keyframes moveHand7 {
+            0% { transform: translateY(-16px) rotate(6deg); }
+            100% { transform: translateY(16px) rotate(-4deg); }
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            max-width: 620px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 20px 28px;
+            border: 3px solid var(--border-black);
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px var(--border-black);
+            font-weight: 600;
+        }
+
+        .secret-word {
+            color: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: inherit;
+            background: transparent;
+            padding: 0;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        /* BLUE GLOW HOVER EFFECT ON "START" */
+        .secret-word:hover {
+            color: #2563eb;
+            text-shadow: 0 0 8px #3b82f6, 0 0 16px #60a5fa, 0 0 24px #93c5fd;
+        }
+
+        .button-wrapper {
+            position: relative;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #runaway-btn {
+            position: absolute;
+            padding: 22px 64px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: #ff2a85;
+            border: 4px solid var(--border-black);
+            border-radius: 60px;
+            box-shadow: 7px 7px 0px var(--border-black);
+            cursor: pointer;
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: opacity 0.1s ease, transform 0.12s ease;
+        }
+
+        .taunt-bubble {
+            position: fixed;
+            background: #ffe600;
+            color: #000;
+            border: 3px solid var(--border-black);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            pointer-events: none;
+            box-shadow: 4px 4px 0px var(--border-black);
+            animation: popFloat 0.7s ease-out forwards;
+            z-index: 10000;
+        }
+
+        @keyframes popFloat {
+            0% { opacity: 1; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* ==========================================================================
+           ENLARGED TEXT EDITOR & RESPONSIVE FLEX LAYOUT
+           ========================================================================== */
+        .editor-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .editor-top-row {
+            display: flex;
+            gap: 28px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        /* TEXT EDITOR TAKES DOMINANT SPACE (2.8x LARGER THAN SIDEBAR) */
+        .editor-main {
+            flex: 2.8;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sticky-note {
+            background: var(--card-yellow);
+            border: 3.5px solid var(--border-black);
+            box-shadow: var(--shadow-pop);
+            padding: 22px;
+            border-radius: 18px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--border-black);
+            transform: rotate(-2deg);
+            width: 210px;
+            flex-shrink: 0;
+            line-height: 1.45;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+
+        /* REVIEWS SIDEBAR (COMPACTED & PROPORTIONAL) */
+        .reviews-window {
+            flex: 1.1;
+            min-width: 320px;
+            max-width: 380px;
+            height: 680px;
+            background: #ffffff;
+            border: 3.5px solid var(--border-black);
+            border-radius: 24px;
+            box-shadow: 8px 8px 0px var(--border-black);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        .reviews-header {
+            background: #a7f3d0;
+            color: var(--border-black);
+            padding: 14px 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            border-bottom: 3.5px solid var(--border-black);
+            text-align: center;
+        }
+
+        .reviews-scroll-wrapper {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 14px 0 0 0;
+        }
+
+        .reviews-track {
+            display: flex;
+            flex-direction: column;
+            padding: 0 18px;
+            width: 100%;
+            animation: scrollUp 20s linear infinite;
+        }
+
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        /* REVIEW CARDS IN SIDEBAR */
+        .review-card {
+            width: 100%;
+            background: var(--card-pink);
+            border: 3.5px solid var(--border-black);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: 5px 5px 0px var(--border-black);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card.alt { background: var(--card-cyan); }
+        .review-card.yellow { background: var(--card-yellow); }
+
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+
+        .review-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 3px solid var(--border-black);
+            object-fit: cover;
+            background: #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .review-name {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--border-black);
+            line-height: 1.2;
+        }
+
+        .review-stars {
+            color: #f59e0b;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.45;
+        }
+
+        .timer-container {
+            margin-bottom: 14px;
+            background: #ffffff;
+            padding: 14px 20px;
+            border: 3.5px solid var(--border-black);
+            border-radius: 18px;
+            box-shadow: var(--shadow-pop);
+        }
+
+        .timer-progress-bg {
+            width: 100%;
+            height: 18px;
+            background: #f1f5f9;
+            border: 2.5px solid var(--border-black);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+
+        .timer-progress-fill {
+            width: 100%;
+            height: 100%;
+            background: var(--primary-pop);
+            transition: width 0.1s linear;
+        }
+
+        /* ENLARGED EDITOR CONTAINER */
+        .editor-container {
+            background: var(--card-white);
+            border: 4px solid var(--border-black);
+            border-radius: 26px;
+            box-shadow: 10px 10px 0px var(--border-black);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .editor-toolbar {
+            background: var(--card-cyan);
+            padding: 16px 24px;
+            border-bottom: 3.5px solid var(--border-black);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* ENLARGED TEXTAREA WITH HUGE HEIGHT & TEXT SIZE */
+        .editor-textarea {
+            width: 100%;
+            height: 580px;
+            padding: 28px;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.35rem;
+            border: none;
+            outline: none;
+            background: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.65;
+            user-select: text;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .editor-textarea:empty:before {
+            content: attr(placeholder);
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .editor-statusbar {
+            background: var(--card-yellow);
+            padding: 14px 24px;
+            border-top: 3.5px solid var(--border-black);
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .block-card {
+            background: var(--card-white);
+            border: 3.5px solid var(--border-black);
+            border-radius: 24px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow-pop);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .block-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .block-card.yellow { background: var(--card-yellow); }
+        .block-card.pink { background: var(--card-pink); }
+        .block-card.cyan { background: var(--card-cyan); }
+        .block-card.purple { background: var(--card-purple); }
+
+        .block-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--border-black);
+        }
+
+        .block-card p {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 0.98rem;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: #ffffff;
+            border: 3px solid var(--border-black);
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: 4px 4px 0px var(--border-black);
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.15s ease;
+        }
+
+        .btn-back:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--border-black);
+            background: #ffe600;
+        }
+
+        .block-detail-box {
+            background: #ffffff;
+            border: 4px solid var(--border-black);
+            border-radius: 28px;
+            padding: 3rem;
+            box-shadow: 8px 8px 0px var(--border-black);
+        }
+
+        .interactive-widget {
+            background: #f8fafc;
+            border: 3px dashed var(--border-black);
+            border-radius: 18px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .interactive-btn {
+            padding: 12px 28px;
+            background: var(--secondary-pop);
+            color: #fff;
+            border: 3px solid var(--border-black);
+            border-radius: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px var(--border-black);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 1100px) {
+            .editor-top-row {
+                flex-direction: column;
+            }
+            .sticky-note {
+                width: 100%;
+                transform: none;
+            }
+            .reviews-window {
+                width: 100%;
+                max-width: 100%;
+                height: 420px;
+            }
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem 5%;
+            text-align: center;
+            background: #ffffff;
+            border-top: 3px solid var(--border-black);
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER OVERLAY -->
+    <div id="preloader">
+        <div class="loader-card">
+            <div class="gif-container">
+                <img src="pappu.jpg" alt="Loading Image" id="loading-img" onerror="this.style.display='none'; document.getElementById('gif-fallback').style.display='flex';">
+                <div id="gif-fallback" style="display:none; font-weight:800; font-size:1.2rem; color:var(--primary-pop);">
+                    🖼️ LOADING...
+                </div>
+            </div>
+            <h3>എഴുത്തു കുന്ത്രാണ്ടം</h3>
+            <p>Initializing കുന്ത്രാണ്ടം Engine...</p>
+            <div class="spinner-bar">
+                <div class="spinner-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <nav>
+            <a class="nav-link active" onclick="navigateTo('home-page')">Home</a>
+            <div class="logo">
+                <span>എഴുത്തു കുന്ത്രാണ്ടം</span>
+            </div>
+            <a class="nav-link" onclick="navigateTo('about-page')">About</a>
+        </nav>
+    </header>
+
+    <!-- LANDING PAGE (HOME) -->
+    <main id="home-page" class="page active">
+        <section class="hero">
+            <span class="badge">🎈 ഉപയോഗശൂന്യ സംരംഭം</span>
+            
+            <div class="hero-title-wrapper">
+                <div class="meme-wrapper meme-left">
+                    <div class="meme-box">
+                        <span class="meme-number">6</span>
+                    </div>
+                    <span class="meme-hand">🫴</span>
+                </div>
+                <h1>എഴുത്തു കുന്ത്രാണ്ടം</h1>
+                <div class="meme-wrapper meme-right">
+                    <div class="meme-box">
+                        <span class="meme-number">7</span>
+                    </div>
+                    <span class="meme-hand">🫴</span>
+                </div>
+            </div>
+            
+            <p class="hero-description">
+                Welcome to our useless creation. To 
+                <span id="secret-trigger" class="secret-word">start</span> 
+                exploring our non-functional innovations, interact with the button below.
+            </p>
+
+            <div class="button-wrapper">
+                <button id="runaway-btn">
+                    <span>🏃‍♂️</span> START <span>💨</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECOND PAGE (ENLARGED TEXT EDITOR HUB) -->
+    <main id="second-page" class="page">
+        <div class="editor-wrapper">
+            <div class="editor-top-row">
+                
+                <!-- HELPFUL TIP STICKY NOTE -->
+                <div class="sticky-note">
+                    📌 <strong>ശ്രദ്ധിക്കൂ!</strong><br><br>
+                    Enter is Backspace<br>
+                    &amp;<br>
+                    Backspace is Enter!
+                </div>
+
+                <!-- ENLARGED TEXT EDITOR MAIN AREA (PRIMARY PRIORITY) -->
+                <div class="editor-main">
+                    <div class="timer-container">
+                        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 0.9rem;">
+                            <span>⏳ നിഷ്ക്രിയത്വ ടൈമർ</span>
+                            <span id="timer-text">5.0s</span>
+                        </div>
+                        <div class="timer-progress-bg">
+                            <div id="timer-progress-fill" class="timer-progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <!-- TEXT EDITOR INTERFACE -->
+                    <div class="editor-container">
+                        <div class="editor-toolbar">
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <span style="width: 14px; height: 14px; border-radius: 50%; background: #ff5f56; border: 2px solid var(--border-black); display: inline-block;"></span>
+                                <span style="width: 14px; height: 14px; border-radius: 50%; background: #ffbd2e; border: 2px solid var(--border-black); display: inline-block;"></span>
+                                <span style="width: 14px; height: 14px; border-radius: 50%; background: #27c93f; border: 2px solid var(--border-black); display: inline-block;"></span>
+                                <span style="font-weight: 800; font-size: 1.05rem; margin-left: 10px;">document.txt</span>
+                            </div>
+                            
+                            <!-- COLOR TOGGLE BUTTON -->
+                            <div style="display: flex; gap: 10px;">
+                                <button id="color-toggle-btn" class="nav-link" style="padding: 6px 16px; font-size: 0.9rem; font-weight: 800;" onclick="toggleColorMode()">Color: OFF</button>
+                            </div>
+                        </div>
+
+                        <!-- EDITABLE TEXT AREA -->
+                        <div id="text-editor" class="editor-textarea" contenteditable="true" placeholder="Start typing here... Enter inserts Backspace, Backspace inserts Enter! Keep typing or face deletion!"></div>
+
+                        <div class="editor-statusbar">
+                            <span id="editor-word-count">വാക്കുകൾ: 0 | അക്ഷരങ്ങൾ: 0</span>
+                            <span>⚡ അലമ്പ് Engine Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REVIEWS SIDEBAR WINDOW -->
+                <div class="reviews-window">
+                    <div class="reviews-header">
+                        സംതൃപ്തരായ ഉപഭോക്താക്കൾ
+                    </div>
+                    <div class="reviews-scroll-wrapper">
+                        <div class="reviews-track">
+                            <!-- First Set of Reviews -->
+                            <div class="review-card">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="chacko.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Alice';">
+                                        <div class="review-name">ചാക്കോ മാഷ്</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"ഭൂഗോളത്തിൻ്റെ സ്പന്ദനം എഴുത്തിലാണ്"</p>
+                            </div>
+
+                            <div class="review-card alt">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="manavalan.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Bob';">
+                                        <div class="review-name">മണവാളൻ</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"എഴുത്തു കുന്ത്രാണ്ടം is the best"</p>
+                            </div>
+
+                            <div class="review-card yellow">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="ponjikkara.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Charlie';">
+                                        <div class="review-name">പോഞ്ഞിക്കര</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"Text Editing with muscles"</p>
+                            </div>
+
+                            <div class="review-card">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="balu.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Diana';">
+                                        <div class="review-name">ബാലചന്ദ്രൻ ചുള്ളിക്കാട്</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"കവിത എഴുതാൻ കൊള്ളാം!"</p>
+                            </div>
+
+                            <!-- Duplicated Set for Seamless Infinite Looping -->
+                            <div class="review-card">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="chacko.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Alice';">
+                                        <div class="review-name">ചാക്കോ മാഷ്</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"ഭൂഗോളത്തിൻ്റെ സ്പന്ദനം എഴുത്തിലാണ്"</p>
+                            </div>
+
+                            <div class="review-card alt">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="manavalan.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Bob';">
+                                        <div class="review-name">മണവാളൻ</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"എഴുത്തു കുന്ത്രാണ്ടം is the best"</p>
+                            </div>
+
+                            <div class="review-card yellow">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="ponjikkara.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Charlie';">
+                                        <div class="review-name">പോഞ്ഞിക്കര</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"Text Editing with muscles"</p>
+                            </div>
+
+                            <div class="review-card">
+                                <div>
+                                    <div class="review-user">
+                                        <img src="balu.jpeg" alt="User Avatar" class="review-avatar" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=Diana';">
+                                        <div class="review-name">ബാലചന്ദ്രൻ ചുള്ളിക്കാട്</div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                                <p class="review-text">"കവിത എഴുതാൻ കൊള്ളാം!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- ABOUT PAGE PLACEHOLDER -->
+    <main id="about-page" class="page">
+        <h1 style="font-family: 'Space Grotesk', sans-serif; font-size: 3rem; margin-bottom: 1rem;">എഴുത്തു കുന്ത്രാണ്ടം</h1>
+        <p style="font-weight: 600; color: var(--text-muted); margin-bottom: 2.5rem;">Learn more about our project and team behind this entry.</p>
+
+        <div class="block-card cyan" style="margin-bottom: 2rem; cursor: default;">
+            <h3>💡 എഴുത്തു കുന്ത്രാണ്ടം</h3>
+            <p>Built by Geekens,100% vibe coded
+            </p>
+        </div>
+
+        <div class="grid-layout">
+            <div class="block-card yellow" style="cursor: default;">
+                <h3>👾 SAMUEL PAINADATH</h3>
+                <p><strong>Role:</strong> [DEVELOPER / DESIGNER]</p>
+                <p style="margin-top: 10px; font-size: 0.88rem;">C.S.E S1</p>
+            </div>
+            <div class="block-card pink" style="cursor: default;">
+                <h3>🎨 JASIN CK</h3>
+                <p><strong>Role:</strong> [DEVELOPER / DESIGNER]</p>
+                <p style="margin-top: 10px; font-size: 0.88rem;">Mech S1</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="font-size: 18px; color: #000000;">original start is in the sentence</p>
+        <p>&copy; 2026 എഴുത്തു കുന്ത്രാണ്ടം • Built By Geekens</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // PRELOADER LOGIC
+        function hidePreloader() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                setTimeout(() => preloader.style.display = 'none', 400);
+            }
+        }
+        window.addEventListener('load', () => setTimeout(hidePreloader, 1200));
+        setTimeout(hidePreloader, 2500);
+
+        // SINGLE PAGE APPLICATION (SPA) NAVIGATION
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        }
+
+        // SECRET TRIGGER WORD
+        const secretTrigger = document.getElementById('secret-trigger');
+        if (secretTrigger) {
+            secretTrigger.addEventListener('click', () => navigateTo('second-page'));
+        }
+
+        // HEADER PHYSICS
+        window.addEventListener('load', () => {
+            const header = document.querySelector('header');
+            if (!header) return;
+
+            const logo = document.querySelector('.logo');
+            const navLinks = document.querySelectorAll('.nav-link');
+            if (!logo || navLinks.length < 2) return;
+
+            const homeBtn = navLinks[0];
+            const aboutBtn = navLinks[1];
+
+            const items = [
+                { el: homeBtn, x: 20, y: 25, vx: 1.5, vy: 1.2 },
+                { el: logo, x: 240, y: 25, vx: -1.8, vy: 1.4 },
+                { el: aboutBtn, x: 580, y: 25, vx: 1.6, vy: -1.3 }
+            ];
+
+            items.forEach(item => {
+                item.el.style.position = 'absolute';
+                item.w = item.el.offsetWidth || 120;
+                item.h = item.el.offsetHeight || 40;
+            });
+
+            function updateHeaderPhysics() {
+                const pW = header.clientWidth;
+                const pH = header.clientHeight;
+
+                items.forEach(item => {
+                    item.w = item.el.offsetWidth || item.w;
+                    item.h = item.el.offsetHeight || item.h;
+
+                    item.x += item.vx;
+                    item.y += item.vy;
+
+                    if (item.x <= 0) { item.x = 0; item.vx *= -1; }
+                    if (item.x + item.w >= pW) { item.x = pW - item.w; item.vx *= -1; }
+                    if (item.y <= 0) { item.y = 0; item.vy *= -1; }
+                    if (item.y + item.h >= pH) { item.y = pH - item.h; item.vy *= -1; }
+                });
+
+                for (let i = 0; i < items.length; i++) {
+                    for (let j = i + 1; j < items.length; j++) {
+                        let a = items[i];
+                        let b = items[j];
+
+                        if (a.x < b.x + b.w && a.x + a.w > b.x &&
+                            a.y < b.y + b.h && a.y + a.h > b.y) {
+                            
+                            let tempVx = a.vx;
+                            let tempVy = a.vy;
+                            a.vx = b.vx;
+                            a.vy = b.vy;
+                            b.vx = tempVx;
+                            b.vy = tempVy;
+
+                            a.x += a.vx;
+                            a.y += a.vy;
+                            b.x += b.vx;
+                            b.y += b.vy;
+                        }
+                    }
+                }
+
+                items.forEach(item => {
+                    item.el.style.left = item.x + 'px';
+                    item.el.style.top = item.y + 'px';
+                });
+
+                requestAnimationFrame(updateHeaderPhysics);
+            }
+
+            updateHeaderPhysics();
+        });
+
+        // TELEPORTING BUTTON LOGIC
+        const btn = document.getElementById('runaway-btn');
+        const taunts = ["Poof! 💨", "Too slow! 😜", "Over here! ⚡", "Disappeared! 🎩", "Try again! 🤪", "Catch me! 💥"];
+        let isTeleporting = false;
+
+        function teleportButton() {
+            if (!btn || isTeleporting) return;
+            isTeleporting = true;
+
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(0.1)';
+
+            setTimeout(() => {
+                const margin = 45;
+                const btnW = btn.offsetWidth || 230;
+                const btnH = btn.offsetHeight || 75;
+
+                const maxX = Math.max(margin, window.innerWidth - btnW - margin);
+                const maxY = Math.max(margin, window.innerHeight - btnH - margin);
+
+                const randomX = Math.floor(Math.random() * (maxX - margin)) + margin;
+                const randomY = Math.floor(Math.random() * (maxY - margin)) + margin;
+
+                btn.style.position = 'fixed';
+                btn.style.left = `${randomX}px`;
+                btn.style.top = `${randomY}px`;
+                btn.style.zIndex = '9999';
+
+                btn.style.opacity = '1';
+                btn.style.transform = 'scale(1)';
+
+                spawnTaunt(randomX + btnW / 2, randomY - 15);
+
+                setTimeout(() => { isTeleporting = false; }, 120);
+            }, 100);
+        }
+
+        function spawnTaunt(x, y) {
+            const bubble = document.createElement('div');
+            bubble.className = 'taunt-bubble';
+            bubble.innerText = taunts[Math.floor(Math.random() * taunts.length)];
+            
+            const clampedX = Math.max(20, Math.min(x - 40, window.innerWidth - 130));
+            const clampedY = Math.max(20, Math.min(y, window.innerHeight - 60));
+
+            bubble.style.left = `${clampedX}px`;
+            bubble.style.top = `${clampedY}px`;
+            document.body.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 700);
+        }
+
+        btn.addEventListener('mouseenter', teleportButton);
+        btn.addEventListener('mouseover', teleportButton);
+        btn.addEventListener('touchstart', (e) => { e.preventDefault(); teleportButton(); });
+        btn.addEventListener('click', (e) => { e.preventDefault(); teleportButton(); });
+
+        /* ==========================================================================
+           TEXT EDITOR MANIPULATION ENGINE
+           ========================================================================== */
+        const textEditor = document.getElementById('text-editor');
+        let isColorModeOn = false;
+        const colorPalette = ['#ef4444', '#f97316', '#d97706', '#10b981', '#06b6d4', '#2563eb', '#7c3aed', '#db2777', '#e11d48', '#8b5cf6'];
+
+        function getRandomColor() {
+            return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        }
+
+        function toggleColorMode() {
+            isColorModeOn = !isColorModeOn;
+            const toggleBtn = document.getElementById('color-toggle-btn');
+            
+            if (isColorModeOn) {
+                toggleBtn.innerText = 'Color: ON 🎨';
+                toggleBtn.style.background = '#ff2a85';
+                toggleBtn.style.color = '#ffffff';
+            } else {
+                toggleBtn.innerText = 'Color: OFF';
+                toggleBtn.style.background = '#ffffff';
+                toggleBtn.style.color = 'var(--text-dark)';
+            }
+            renderEditorContent();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        function getCaretOffset(element) {
+            let caretOffset = 0;
+            const sel = window.getSelection();
+            if (sel && sel.rangeCount > 0) {
+                const range = sel.getRangeAt(0);
+                if (element.contains(range.endContainer)) {
+                    const preCaretRange = range.cloneRange();
+                    preCaretRange.selectNodeContents(element);
+                    preCaretRange.setEnd(range.endContainer, range.endOffset);
+                    caretOffset = preCaretRange.toString().length;
+                }
+            }
+            return caretOffset;
+        }
+
+        function setCaretOffset(el, offset) {
+            const sel = window.getSelection();
+            const range = document.createRange();
+            let currentLen = 0;
+            let found = false;
+
+            function traverseNodes(node) {
+                if (found) return;
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const nextLen = currentLen + node.length;
+                    if (offset <= nextLen) {
+                        range.setStart(node, Math.max(0, offset - currentLen));
+                        range.collapse(true);
+                        found = true;
+                        return;
+                    }
+                    currentLen = nextLen;
+                } else if (node.nodeName === 'BR') {
+                    currentLen += 1;
+                } else {
+                    for (let child of node.childNodes) {
+                        traverseNodes(child);
+                        if (found) break;
+                    }
+                }
+            }
+
+            traverseNodes(el);
+            if (!found) {
+                range.selectNodeContents(el);
+                range.collapse(false);
+            }
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+
+        function getEditorRawText() {
+            if (!textEditor) return '';
+            return textEditor.innerText || textEditor.textContent || '';
+        }
+
+        function updateStats() {
+            if (!textEditor) return;
+            const val = getEditorRawText();
+            const words = val.trim() ? val.trim().split(/\s+/).length : 0;
+            const chars = val.replace(/\r?\n|\r/g, '').length;
+            const wordCountEl = document.getElementById('editor-word-count');
+            if (wordCountEl) {
+                wordCountEl.innerText = `Words: ${words} | Chars: ${chars}`;
+            }
+        }
+
+        function renderEditorContent(targetCaretOffset = null) {
+            if (!textEditor) return;
+            
+            const currentCaret = targetCaretOffset !== null ? targetCaretOffset : getCaretOffset(textEditor);
+            const rawText = getEditorRawText();
+
+            if (isColorModeOn) {
+                const tokens = rawText.split(/(\s+)/);
+                let colorizedHtml = '';
+                tokens.forEach(token => {
+                    if (!token) return;
+                    if (/^\s+$/.test(token)) {
+                        colorizedHtml += token.replace(/\n/g, '<br>');
+                    } else {
+                        const randomColor = getRandomColor();
+                        colorizedHtml += `<span style="color: ${randomColor}; font-weight: 700;">${escapeHtml(token)}</span>`;
+                    }
+                });
+                textEditor.innerHTML = colorizedHtml;
+            } else {
+                textEditor.textContent = rawText;
+            }
+
+            setCaretOffset(textEditor, currentCaret);
+            updateStats();
+        }
+
+        if (textEditor) {
+            textEditor.addEventListener('keydown', function(e) {
+                boostTimer();
+                
+                if (e.key === 'Backspace') {
+                    e.preventDefault();
+                    const caretPos = getCaretOffset(this);
+                    const text = getEditorRawText();
+                    
+                    const newText = text.slice(0, caretPos) + "\n" + text.slice(caretPos);
+                    this.innerText = newText;
+                    renderEditorContent(caretPos + 1);
+                } 
+                else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const caretPos = getCaretOffset(this);
+                    const text = getEditorRawText();
+                    
+                    if (caretPos > 0) {
+                        const newText = text.slice(0, caretPos - 1) + text.slice(caretPos);
+                        this.innerText = newText;
+                        renderEditorContent(caretPos - 1);
+                    }
+                }
+            });
+
+            textEditor.addEventListener('input', function(e) {
+                boostTimer();
+                
+                if (e.inputType === 'insertText' && e.data === ' ') {
+                    const caretPos = getCaretOffset(this);
+                    const text = getEditorRawText();
+                    
+                    const textBeforeCaret = text.slice(0, caretPos);
+                    const textAfterCaret = text.slice(caretPos);
+
+                    const beforeSpace = textBeforeCaret.slice(0, -1);
+                    const match = beforeSpace.match(/(\S+)$/);
+
+                    if (match) {
+                        const lastWord = match[1];
+                        
+                        /* MANIPULATION TRIGGERS 100% OF THE TIME ON EVERY WORD */
+                        const processedWord = lastWord.split('').reverse().map(char => {
+                            return Math.random() < 0.20 ? char.toUpperCase() : char;
+                        }).join('');
+
+                        const wordStartIdx = match.index;
+                        const newBefore = beforeSpace.slice(0, wordStartIdx) + processedWord + ' ';
+                        const newFullText = newBefore + textAfterCaret;
+                        
+                        this.innerText = newFullText;
+                        renderEditorContent(newBefore.length);
+                        return;
+                    }
+                }
+
+                renderEditorContent();
+            });
+        }
+
+        // INACTIVITY PANIC TIMER LOGIC
+        let timerValue = 5000;
+        const maxTimer = 5000;
+        let deleteInterval = null;
+
+        function boostTimer() {
+            timerValue = Math.min(maxTimer, timerValue + 600);
+        }
+
+        setInterval(() => {
+            if (timerValue > 0) {
+                timerValue = Math.max(0, timerValue - 100);
+            }
+
+            const percentage = (timerValue / maxTimer) * 100;
+            const progressFill = document.getElementById('timer-progress-fill');
+            const timerText = document.getElementById('timer-text');
+
+            if (progressFill) progressFill.style.width = percentage + '%';
+            if (timerText) timerText.innerText = (timerValue / 1000).toFixed(1) + 's';
+
+            if (timerValue === 0) {
+                if (!deleteInterval) {
+                    deleteInterval = setInterval(() => {
+                        if (timerValue === 0 && textEditor) {
+                            let text = getEditorRawText();
+                            if (text.length > 0) {
+                                text = text.slice(0, -1);
+                                textEditor.innerText = text;
+                                renderEditorContent(text.length);
+                            }
+                        }
+                    }, 200);
+                }
+            } else {
+                if (deleteInterval) {
+                    clearInterval(deleteInterval);
+                    deleteInterval = null;
+                }
+            }
+        }, 100);
+
+        let currentBlockKey = 'alpha';
+
+        function openBlockDetail(blockKey) {
+            const data = blockData[blockKey];
+            if (!data) return;
+
+            currentBlockKey = blockKey;
+            document.getElementById('block-detail-title').innerText = data.title;
+            document.getElementById('block-detail-desc').innerText = data.desc;
+            document.getElementById('widget-heading').innerText = data.widget;
+            document.getElementById('widget-output').innerText = "Status: Ready";
+
+            navigateTo('block-detail-page');
+        }
+
+        function triggerWidgetAction() {
+            const output = document.getElementById('widget-output');
+            const data = blockData[currentBlockKey];
+            output.innerText = "Processing...";
+            setTimeout(() => {
+                output.innerText = data.actionText + " (" + Math.floor(Math.random() * 999) + ")";
+            }, 400);
+        }
+    </script>
+</body>
+</html>
