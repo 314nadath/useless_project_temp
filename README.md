@@ -2,47 +2,37 @@
 
 
 
-# [Project Name] 🎯
+# [എഴുത്തു കുന്ത്രാണ്ടം] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [Geekens]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [SAMUEL PAINADATH] - [GOVERNMENT ENGINEERING COLLEGE THRISSUR]
+- Member 2: [MUHAMMAD JASIN C K] - [GOVERNMENT ENGINEERING COLLEGE THRISSUR]
 
 ### Project Description
-[2-3 lines about what your project does]
-
+A Ridiculous text editor which tries to make you mad
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+To become the Best Text Editor
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+The Text typed would be reversed capitalized and malformed
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- HTML,JS,CS
+- [Google Gemini]
 
 ### Implementation
 For Software:
 # Installation
-[commands]
-
+No Installation
 # Run
-[commands]
+Open Index.html in any browser
 
 ### Project Documentation
 For Software:
