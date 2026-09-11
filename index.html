@@ -1,1 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>എഴുത്തു കുന്ത്രാണ്ടം | Project Documentation</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & COLORS
+       ========================================================================== */
+    :root {
+      --bg-yellow: #fef08a;
+      --card-yellow: #fef9c3;
+      --card-pink: #fce7f3;
+      --card-cyan: #cffafe;
+      --card-purple: #f3e8ff;
+      --card-green: #a7f3d0;
+      --card-white: #ffffff;
+      --border-black: #0f172a;
+      --shadow-pop: 5px 5px 0px #0f172a;
+      --shadow-hover: 9px 9px 0px #0f172a;
+      --primary-pink: #ff2a85;
+      --secondary-purple: #7c3aed;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --sidebar-width: 290px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-yellow);
+      background-image: radial-gradient(rgba(15, 23, 42, 0.08) 2px, transparent 2px);
+      background-size: 28px 28px;
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       TOP NAVBAR
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 4px solid var(--border-black);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 0px rgba(15, 23, 42, 0.1);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--border-black);
+      text-decoration: none;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-pop {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--border-black);
+      background: var(--card-white);
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: 3px 3px 0px var(--border-black);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-pop-primary {
+      background: var(--primary-pink);
+      color: white;
+    }
+
+    .btn-pop-primary:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px var(--border-black);
+      background: var(--secondary-purple);
+      color: white;
+    }
+
+    /* ==========================================================================
+       LAYOUT
+       ========================================================================== */
+    .app-layout {
+      display: flex;
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    /* Sidebar Navigation */
+    .doc-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      background: var(--card-white);
+      border: 3.5px solid var(--border-black);
+      border-radius: 20px;
+      box-shadow: var(--shadow-pop);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+
+    .sidebar-group-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      padding-left: 8px;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-item-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-item-btn i {
+      width: 20px;
+      font-size: 1.05rem;
+      color: var(--secondary-purple);
+    }
+
+    .nav-item-btn:hover {
+      background: var(--card-cyan);
+      border-color: var(--border-black);
+    }
+
+    .nav-item-btn.active {
+      background: var(--card-yellow);
+      border-color: var(--border-black);
+      box-shadow: 3px 3px 0px var(--border-black);
+    }
+
+    /* Main Content Area */
+    .doc-content {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       HERO & TEAM SECTION
+       ========================================================================== */
+    .hero-banner {
+      background: var(--card-white);
+      border: 4px solid var(--border-black);
+      border-radius: 24px;
+      box-shadow: var(--shadow-pop);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .vibe-badge {
+      position: absolute;
+      top: -18px;
+      right: 30px;
+      background: var(--card-green);
+      color: var(--border-black);
+      padding: 8px 18px;
+      border: 3px solid var(--border-black);
+      border-radius: 25px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      transform: rotate(6deg);
+      box-shadow: 4px 4px 0px var(--border-black);
+      z-index: 10;
+    }
+
+    .hero-badge-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--card-pink);
+      border: 2px solid var(--border-black);
+      box-shadow: 2px 2px 0px var(--border-black);
+      border-radius: 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-banner h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-banner p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 820px;
+      font-weight: 600;
+    }
+
+    .doc-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Team Grid */
+    .grid-spec {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .spec-card {
+      background: var(--card-white);
+      border: 3.5px solid var(--border-black);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-pop);
+    }
+
+    .spec-card.yellow { background: var(--card-yellow); }
+    .spec-card.cyan { background: var(--card-cyan); }
+
+    .spec-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .spec-card p {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       FEATURES SECTION
+       ========================================================================== */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .feature-item {
+      background: var(--card-white);
+      border: 3.5px solid var(--border-black);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-pop);
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      border: 2.5px solid var(--border-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 2px 2px 0px var(--border-black);
+    }
+
+    .feature-info h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-info p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       FILE STRUCTURE SECTION
+       ========================================================================== */
+    .code-block-wrapper {
+      background: #0f172a;
+      border: 3.5px solid var(--border-black);
+      border-radius: 18px;
+      box-shadow: var(--shadow-pop);
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .code-header {
+      background: #1e293b;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #f8fafc;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      border-bottom: 2px solid var(--border-black);
+    }
+
+    pre code {
+      display: block;
+      padding: 1.2rem;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      margin-top: auto;
+      padding: 1.8rem;
+      text-align: center;
+      background: var(--card-white);
+      border-top: 3.5px solid var(--border-black);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .app-layout {
+        flex-direction: column;
+      }
+      .doc-sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header>
+    <a href="#" class="brand-logo">
+      <span>എഴുത്തു കുന്ത്രാണ്ടം</span>
+    </a>
+    <div class="top-actions">
+      <!-- LINKED DIRECTLY TO THE REQUESTED FILE -->
+      <a href="project/index.html" target="_blank" class="btn-pop btn-pop-primary">
+        <i class="fa-solid fa-play"></i> Launch App
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="app-layout">
+    
+    <!-- SIDEBAR -->
+    <aside class="doc-sidebar">
+      <div>
+        <div class="sidebar-group-title">Guide</div>
+        <ul class="nav-menu">
+          <li>
+            <button class="nav-item-btn active" onclick="switchTab('overview-tab', this)">
+              <i class="fa-solid fa-compass"></i> Overview & Team
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" onclick="switchTab('features-tab', this)">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Features & Mechanics
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" onclick="switchTab('architecture-tab', this)">
+              <i class="fa-solid fa-folder-tree"></i> File Structure
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" onclick="switchTab('review-tab', this)">
+              <i class="fa-solid fa-comments"></i> User Reviews
+            </button>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="doc-content">
+
+      <!-- TAB 1: OVERVIEW & TEAM -->
+      <section id="overview-tab" class="tab-pane active">
+        <div class="hero-banner">
+          <div class="vibe-badge">✨ 100% Vibe Coded</div>
+          <span class="hero-badge-tag">A Project by Team Geekens</span>
+          <h1>എഴുത്തു കുന്ത്രാണ്ടം</h1>
+          <p>
+            Welcome to the official documentation for <strong>എഴുത്തു കുന്ത്രാണ്ടം</strong>. It is a fun text editor that makes typing hard on purpose. We reversed how normal tools work to create a funny and chaotic experience!
+          </p>
+        </div>
+
+        <h2 class="doc-section-title" style="margin-top: 2rem;">
+          <i class="fa-solid fa-users" style="color: var(--secondary-purple);"></i> Team Geekens
+        </h2>
+        
+        <div class="grid-spec">
+          <div class="spec-card yellow">
+            <h3>SAMUEL PAINADATH</h3>
+            <p>CSE Department, S1</p>
+          </div>
+          <div class="spec-card cyan">
+            <h3>JASIN CK</h3>
+            <p>Mech Department, S1</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: FEATURES & MECHANICS -->
+      <section id="features-tab" class="tab-pane">
+        <h2 class="doc-section-title">
+          <i class="fa-solid fa-cubes" style="color: var(--secondary-purple);"></i> Features & Mechanics
+        </h2>
+
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon-box" style="background: var(--card-yellow);">
+              <i class="fa-solid fa-keyboard"></i>
+            </div>
+            <div class="feature-info">
+              <h4>🔄 Inverted KeyMap</h4>
+              <p>
+                Pressing Enter deletes text, and pressing Backspace adds a new line. It completely messes with your brain while you try to type normally!
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box" style="background: var(--card-pink);">
+              <i class="fa-solid fa-hourglass-half"></i>
+            </div>
+            <div class="feature-info">
+              <h4>⏳ Inactivity Timer</h4>
+              <p>
+                If you stop typing for 5 seconds, your text starts disappearing letter by letter. You have to keep typing quickly to save your document!
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box" style="background: var(--card-cyan);">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <div class="feature-info">
+              <h4>🎨 Dynamic Colorize</h4>
+              <p>
+                Every word you type gets a random bright color. It makes the screen look chaotic, vibrant, and incredibly fun to look at.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: FILE STRUCTURE -->
+      <section id="architecture-tab" class="tab-pane">
+        <h2 class="doc-section-title">
+          <i class="fa-solid fa-folder-tree" style="color: var(--primary-pink);"></i> File Structure
+        </h2>
+
+        <p style="font-size: 1rem; color: var(--text-muted); font-weight: 600; line-height: 1.6;">
+          To make sure the website runs perfectly, place both the documentation file and your app in the exact folder structure below:
+        </p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span><i class="fa-regular fa-folder"></i> Folder Layout</span>
+            <span>Directory: /project</span>
+          </div>
+          <pre><code>project/
+├── docs.html        &lt;-- (This Documentation File)
+└── index16.html     &lt;-- (The Main Text Editor App)</code></pre>
+        </div>
+      </section>
+
+      <!-- TAB 4: REVIEWS -->
+      <section id="review-tab" class="tab-pane">
+        <h2 class="doc-section-title">
+          <i class="fa-solid fa-heart" style="color: var(--primary-pink);"></i> User Reviews
+        </h2>
+
+        <p style="font-weight: 600; color: var(--text-muted); margin-bottom: 1rem;">
+          Here is what some famous characters have to say about our text editor:
+        </p>
+
+        <div style="background: var(--card-purple); border: 3.5px solid var(--border-black); border-radius: 20px; padding: 1.5rem; box-shadow: var(--shadow-pop); margin-top: 1rem;">
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-weight: 700;">
+            <li style="background: white; padding: 12px 16px; border-radius: 12px; border: 2px solid var(--border-black);">
+              👴 <strong>ചാക്കോ മാഷ്:</strong> "ഭൂഗോളത്തിൻ്റെ സ്പന്ദനം എഴുത്തിലാണ്"
+            </li>
+            <li style="background: white; padding: 12px 16px; border-radius: 12px; border: 2px solid var(--border-black);">
+              🕶️ <strong>മണവാളൻ:</strong> "എഴുത്തു കുന്ത്രാണ്ടം is the best"
+            </li>
+            <li style="background: white; padding: 12px 16px; border-radius: 12px; border: 2px solid var(--border-black);">
+              💪 <strong>പോഞ്ഞിക്കര:</strong> "Text Editing with muscles"
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 എഴുത്തു കുന്ത്രാണ്ടം • Built by Geekens</p>
+  </footer>
+
+  <!-- JAVASCRIPT FOR TABS -->
+  <script>
+    function switchTab(tabId, btnElement) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+
+      // Show selected tab
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) {
+        targetPane.classList.add('active');
+      }
+
+      // Update active state on sidebar buttons
+      if (btnElement) {
+        document.querySelectorAll('.nav-item-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        btnElement.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
