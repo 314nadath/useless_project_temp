@@ -2,16 +2,16 @@
 
 
 
-# [എഴുത്തു കുന്ത്രാണ്ടം] 🎯
+# **എഴുത്തു കുന്ത്രാണ്ടം** 🎯
 
 
 ## Basic Details
-### Team Name: [Geekens]
+### Team Name: **Geekens**
 
 
 ### Team Members
-- Team Lead: [SAMUEL PAINADATH] - [GOVERNMENT ENGINEERING COLLEGE THRISSUR]
-- Member 2: [MUHAMMAD JASIN C K] - [GOVERNMENT ENGINEERING COLLEGE THRISSUR]
+- Team Lead: SAMUEL PAINADATH - GOVERNMENT ENGINEERING COLLEGE THRISSUR
+- Member 2: MUHAMMAD JASIN C K - GOVERNMENT ENGINEERING COLLEGE THRISSUR
 
 ### Project Description
 A Ridiculous text editor which tries to make you mad
@@ -25,7 +25,7 @@ The Text typed would be reversed capitalized and malformed
 ### Technologies/Components Used
 For Software:
 - HTML,JS,CS
-- [Google Gemini]
+- Google Gemini
 
 ### Implementation
 For Software:
@@ -38,14 +38,14 @@ Open Index.html in any browser
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![screenshot1.png]
+Home page of the App
+GOVERNMENT ENGINEERING COLLEGE THRISSUR
+![screenshot2.png]
+Editing interface 
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![screenshot3.png]
+Typing demo with colour option on
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
