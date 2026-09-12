@@ -72,7 +72,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-<video src="./video.mp4" width="100%" controls muted autoplay loop></video>
+[![Watch the demo video]()](video.mp4)
 How the App Works
 
 # Additional Demos
