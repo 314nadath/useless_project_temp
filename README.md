@@ -38,13 +38,13 @@ Open Index.html in any browser
 For Software:
 
 # Screenshots (Add at least 3)
-![screenshot1.png]
+![](screenshot1.png)
 Home page of the App
 GOVERNMENT ENGINEERING COLLEGE THRISSUR
-![screenshot2.png]
+![](screenshot2.png)
 Editing interface 
 
-![screenshot3.png]
+![](screenshot3.png)
 Typing demo with colour option on
 
 # Diagrams
@@ -72,7 +72,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-![video.mp4]
+![](video.mp4)
 How the App Works
 
 # Additional Demos
