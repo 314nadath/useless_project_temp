@@ -72,7 +72,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-![](https://drive.google.com/file/d/1aN-IgF_XYUtBnBenuhFJAvdVpVP4Gfe4/view?usp=sharing)
+<video src="video.mp4" width="100%" controls muted autoplay loop></video>
 How the App Works
 
 # Additional Demos
