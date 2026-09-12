@@ -40,7 +40,7 @@ For Software:
 # Screenshots (Add at least 3)
 ![](screenshot1.png)
 Home page of the App
-GOVERNMENT ENGINEERING COLLEGE THRISSUR
+
 ![](screenshot2.png)
 Editing interface 
 
