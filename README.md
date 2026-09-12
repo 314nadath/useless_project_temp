@@ -72,16 +72,15 @@ For Hardware:
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+![video.mp4]
+How the App Works
 
 # Additional Demos
 [Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Samuel Painadath: Development
+- Muhammad Jasin C K : UI design
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
