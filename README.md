@@ -72,7 +72,7 @@ For Hardware:
 
 ### Project Demo
 # Video
-![](video.mp4)
+![](https://drive.google.com/file/d/1aN-IgF_XYUtBnBenuhFJAvdVpVP4Gfe4/view?usp=sharing)
 How the App Works
 
 # Additional Demos
